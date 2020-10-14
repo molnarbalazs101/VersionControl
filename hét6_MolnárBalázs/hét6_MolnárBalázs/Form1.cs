@@ -13,9 +13,15 @@ namespace hét6_MolnárBalázs
 {
     public partial class Form1 : Form
     {
+        BindingList<RateDate> Rates = new BindingList<RateDate>();
+
         public Form1()
         {
             InitializeComponent();
+
+            dataGridView1.DataSource = Rates;
+
+            
 
             függvény();
 
