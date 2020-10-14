@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using hét6_MolnárBalázs.Entities;
 using hét6_MolnárBalázs.MnbServiceReference;
 
 namespace hét6_MolnárBalázs
@@ -14,6 +16,7 @@ namespace hét6_MolnárBalázs
     public partial class Form1 : Form
     {
         BindingList<RateDate> Rates = new BindingList<RateDate>();
+        private string result;
 
         public Form1()
         {
@@ -42,6 +45,36 @@ namespace hét6_MolnárBalázs
             var response = mnbService.GetExchangeRates(request);
 
             var result = response.GetExchangeRatesResult;
+
+
+        }
+
+        private void XML()
+        {
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
+
+            
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+               
+                var rate = new RateDate();
+                Rates.Add(rate);
+
+               
+                rate.Date = DateTime.Parse(element.GetAttribute("date"));
+
+                
+                var childElement = (XmlElement)element.ChildNodes[0];
+                rate.Currency = childElement.GetAttribute("curr");
+
+                
+                var unit = decimal.Parse(childElement.GetAttribute("unit"));
+                var value = decimal.Parse(childElement.InnerText);
+                if (unit != 0)
+                    rate.Value = value / unit;
+            }
+
 
 
         }
