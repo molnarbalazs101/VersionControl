@@ -31,24 +31,26 @@ namespace tasks_week07
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
 
 
-
-            for (int year = 2005; year <= 2024; year++)
+           public void Szimuláció()
             {
-                
-                
-                for (int i = 0; i < Population.Count; i++)
+                for (int year = 2005; year <= 2024; year++)
                 {
-                    SimStep();
-                }
 
-                int nbrOfMales = (from x in Population
-                                  where x.Gender == Gender.Male && x.IsAlive
-                                  select x).Count();
-                int nbrOfFemales = (from x in Population
-                                    where x.Gender == Gender.Female && x.IsAlive
-                                    select x).Count();
-                Console.WriteLine(
-                    string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
+
+                    for (int i = 0; i < Population.Count; i++)
+                    {
+                        
+                    }
+
+                    int nbrOfMales = (from x in Population
+                                      where x.Gender == Gender.Male && x.IsAlive
+                                      select x).Count();
+                    int nbrOfFemales = (from x in Population
+                                        where x.Gender == Gender.Female && x.IsAlive
+                                        select x).Count();
+                    Console.WriteLine(
+                        string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
+                }
             }
         }
 
@@ -109,6 +111,11 @@ namespace tasks_week07
                     Population.Add(újszülött);
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Szimuláció();
         }
     }
 }
