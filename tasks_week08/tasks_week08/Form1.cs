@@ -14,6 +14,7 @@ namespace tasks_week08
 {
     public partial class Form1 : Form
     {
+        private Toy _nextToy;
 
         private List<Toy> _toys = new List<Toy>();
 
@@ -29,7 +30,7 @@ namespace tasks_week08
         {
             InitializeComponent();
 
-            Factory = new Entities.IToyFactory();
+            Factory = new Entities.CarFactory();
         }
 
         private void createTimer_Tick(object sender, EventArgs e)
@@ -61,6 +62,26 @@ namespace tasks_week08
             }
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Factory = new CarFactory();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Factory = new BallFactory();
+        }
+
+        private void DisplayNext()
+        {
+            if (_nextToy != null)
+                Controls.Remove(_nextToy);
+            _nextToy = Factory.CreateNew();
+            _nextToy.Top = label1.Top + label1.Height + 20;
+            _nextToy.Left = label1.Left;
+            Controls.Add(_nextToy);
         }
     }
 }
