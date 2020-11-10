@@ -13,7 +13,7 @@ namespace tasks_week08.Entities
         protected override void DrawImage(Graphics g)
         {
             Image imageFile = Image.FromFile("Images/car.png");
-            throw new NotImplementedException();
+            
         }
     }
 }
