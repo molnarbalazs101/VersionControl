@@ -7,7 +7,7 @@ using tasks_week08.Abstractions;
 
 namespace tasks_week08.Entities
 {
-    public class CarFactory : IToyFactory
+    public class CarFactory : Abstractions.IToyFactory
     {
         public Toy CreateNew()
         {
