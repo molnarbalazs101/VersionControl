@@ -17,7 +17,9 @@ namespace task_week10
         GameController gc = new GameController();
         GameArea ga;
 
-        
+        Brain winnerBrain = null;
+
+
 
         public Form1()
         {
@@ -72,6 +74,17 @@ namespace task_week10
             label1.Text = string.Format(
                 "{0}. generáció",
                 generation);
+
+
+            var winners = from p in topPerformers
+                          where p.IsWinner
+                          select p;
+            if (winners.Count() > 0)
+            {
+                winnerBrain = winners.FirstOrDefault().Brain.Clone();
+                gc.GameOver -= Gc_GameOver;
+                return;
+            }
         }
     }
 }
