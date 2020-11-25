@@ -25,6 +25,11 @@ namespace task_week10
 
             gc.AddPlayer();
             gc.Start(true);
+
+            int populationSize = 100;
+            int nbrOfSteps = 10;
+            int nbrOfStepsIncrement = 10;
+            int generation = 1;
         }
     }
 }
